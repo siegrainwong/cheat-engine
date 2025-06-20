@@ -1,5 +1,5 @@
 ;
-; DBK64.inf
+; sgce64.inf
 ;
 
 [Version]
@@ -7,12 +7,13 @@ Signature="$WINDOWS NT$"
 Class=System
 ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
 Provider=%ManufacturerName%
-CatalogFile=DBK64.cat
+CatalogFile=sgce64.cat
 DriverVer= ; TODO: set DriverVer in stampinf property pages
+PnpLockdown=1
 
 [DestinationDirs]
 DefaultDestDir = 12
-DBK64_Device_CoInstaller_CopyFiles = 11
+sgce64_Device_CoInstaller_CopyFiles = 11
 
 ; ================= Class section =====================
 
@@ -20,7 +21,7 @@ DBK64_Device_CoInstaller_CopyFiles = 11
 1 = %DiskName%,,,""
 
 [SourceDisksFiles]
-DBK64.sys  = 1,,
+sgce64.sys  = 1,,
 WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
 
 ;*****************************************
@@ -31,49 +32,49 @@ WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with
 %ManufacturerName%=Standard,NT$ARCH$
 
 [Standard.NT$ARCH$]
-%DBK64.DeviceDesc%=DBK64_Device, Root\DBK64 ; TODO: edit hw-id
+%sgce64.DeviceDesc%=sgce64_Device, Root\sgce64 ; TODO: edit hw-id
 
-[DBK64_Device.NT]
+[sgce64_Device.NT]
 CopyFiles=Drivers_Dir
 
 [Drivers_Dir]
-DBK64.sys
+sgce64.sys
 
 ;-------------- Service installation
-[DBK64_Device.NT.Services]
-AddService = DBK64,%SPSVCINST_ASSOCSERVICE%, DBK64_Service_Inst
+[sgce64_Device.NT.Services]
+AddService = sgce64,%SPSVCINST_ASSOCSERVICE%, sgce64_Service_Inst
 
-; -------------- DBK64 driver install sections
-[DBK64_Service_Inst]
-DisplayName    = %DBK64.SVCDESC%
+; -------------- sgce64 driver install sections
+[sgce64_Service_Inst]
+DisplayName    = %sgce64.SVCDESC%
 ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
 StartType      = 3               ; SERVICE_DEMAND_START
 ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
-ServiceBinary  = %12%\DBK64.sys
+ServiceBinary  = %12%\sgce64.sys
 
 ;
-;--- DBK64_Device Coinstaller installation ------
+;--- sgce64_Device Coinstaller installation ------
 ;
 
-[DBK64_Device.NT.CoInstallers]
-AddReg=DBK64_Device_CoInstaller_AddReg
-CopyFiles=DBK64_Device_CoInstaller_CopyFiles
+[sgce64_Device.NT.CoInstallers]
+AddReg=sgce64_Device_CoInstaller_AddReg
+CopyFiles=sgce64_Device_CoInstaller_CopyFiles
 
-[DBK64_Device_CoInstaller_AddReg]
+[sgce64_Device_CoInstaller_AddReg]
 HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
 
-[DBK64_Device_CoInstaller_CopyFiles]
+[sgce64_Device_CoInstaller_CopyFiles]
 WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
 
-[DBK64_Device.NT.Wdf]
-KmdfService =  DBK64, DBK64_wdfsect
-[DBK64_wdfsect]
+[sgce64_Device.NT.Wdf]
+KmdfService =  sgce64, sgce64_wdfsect
+[sgce64_wdfsect]
 KmdfLibraryVersion = $KMDFVERSION$
 
 [Strings]
 SPSVCINST_ASSOCSERVICE= 0x00000002
-ManufacturerName="Cheat Engine" ;TODO: Replace with your manufacturer name
+ManufacturerName="SGCER 250619" ;TODO: Replace with your manufacturer name
 ClassName="System" ; TODO: edit ClassName
-DiskName = "DBK64 Installation Disk"
-DBK64.DeviceDesc = "DBK64 Device"
-DBK64.SVCDESC = "DBK64 Service"
+DiskName = "sgce64 Installation Disk"
+sgce64.DeviceDesc = "sgce64 Device"
+sgce64.SVCDESC = "sgce64 Service"

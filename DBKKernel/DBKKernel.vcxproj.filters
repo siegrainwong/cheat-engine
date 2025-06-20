@@ -166,9 +166,6 @@
     </MASM>
   </ItemGroup>
   <ItemGroup>
-    <Inf Include="DBK32.inf">
-      <Filter>Driver Files</Filter>
-    </Inf>
     <Inf Include="DBK64.inf">
       <Filter>Driver Files</Filter>
     </Inf>
