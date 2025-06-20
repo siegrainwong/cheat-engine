@@ -58,7 +58,6 @@
     <Configuration>Debug</Configuration>
     <Platform Condition="'$(Platform)' == ''">Win32</Platform>
     <RootNamespace>DBKKernel</RootNamespace>
-    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -102,7 +101,8 @@
     <DriverTargetPlatform>Desktop</DriverTargetPlatform>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release without sig|x64'" Label="Configuration">
-    <TargetVersion>Windows10</TargetVersion>
+    <TargetVersion>
+    </TargetVersion>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
     <ConfigurationType>Driver</ConfigurationType>
@@ -205,12 +205,13 @@
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
     <TimeStampServer>http://timestamp.globalsign.com/?signature=sha2</TimeStampServer>
     <OutDir>..\Cheat Engine\bin\</OutDir>
-    <TargetName>DBK64</TargetName>
+    <TargetName>sgce64</TargetName>
     <Inf2CatUseLocalTime>true</Inf2CatUseLocalTime>
     <EnableInf2cat>false</EnableInf2cat>
     <Inf2CatNoCatalog>true</Inf2CatNoCatalog>
     <DiagnosticMode>true</DiagnosticMode>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <IncludePath>$(IncludePath);C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\km;</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <DebuggerFlavor>DbgengKernelDebugger</DebuggerFlavor>
@@ -280,7 +281,8 @@ makecab /f "$(ProjectDir)\dbk64.ddf"
       <FileDigestAlgorithm>sha256</FileDigestAlgorithm>
     </DriverSign>
     <PostBuildEvent>
-      <Command>"$(WDKBinRoot_x64)\signtool.exe" sign /a /ac "$(TargetDir)..\release\sig\GlobalSign Root CA.crt" /tr http://rfc3161timestamp.globalsign.com/advanced /td SHA256 "$(TargetPath)"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
     <PostBuildEvent>
       <Message>Sign the CE driver</Message>
